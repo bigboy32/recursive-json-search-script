@@ -1,0 +1,94 @@
+{
+    "Analytics": {
+       "Definition": {
+          "ResultSetFeatureRequest": {
+             "IncludePerformanceData": true,
+             "ResultEncoding": "None",
+             "ResultFormat": "Version2"
+          },
+          "Description": "Rank on axis with duplicate numbers in the ranked data",
+          "Dimensions": [
+             {
+                "Name": "COMPANY_NAME",
+                "Axis": "Rows"
+             },
+             {
+                "Axis": "Rows",
+                "SortOrder": 1,
+                "Name": "YEAR"
+             },
+             {
+                "Name": "CustomDimension1",
+                "Members": [
+                   {
+                      "ExceptionAggregationDimensions": [
+                         "ORDER_NUMBER"
+                      ],
+                      "Selection": {
+                         "MeasureOperand": "ORDER_COUNT"
+                      },
+                      "Name": "ORDER_COUNT",
+                      "SortOrder": 2,
+                      "ExceptionAggregation": "SUM"
+                   },
+                   {
+                      "Selection": {
+                         "MeasureOperand": "ORDER_COUNT"
+                      },
+                      "Name": "ORDER_COUNT_RANK",
+                      "PostAggregation": "RANK",
+                      "PostAggregationDimensions": [
+                         "YEAR",
+                         "COMPANY_NAME"
+                      ],
+                      "ExceptionAggregationDimensions": [
+                         "ORDER_NUMBER"
+                      ],
+                      "ExceptionAggregation": "COUNT"
+                   }
+                ],
+                "Axis": "Columns"
+             }
+          ],
+          "DataSource": {
+             "PackageName": "liquid-sqe",
+             "ObjectName": "LIQUID_SALES_AV1"
+          },
+          "ReadMode": "BookedAndSpaceAndState",
+          "Name": "Query565"
+       },
+       "Capabilities": [
+          "DimensionDescription",
+          "ExceptionAggregationDimsAndFormulas",
+          "SP9",
+          "AttributeHierarchy",
+          "SemanticalErrorType",
+          "ValuesRounded",
+          "MetadataSemanticType",
+          "MetadataDimensionGroup",
+          "MetadataDimensionOthers",
+          "MetadataHierarchyStructure",
+          "MetadataIsDisplayAttribute",
+          "ResultSetCellMeasure",
+          "ResultSetCellFormatString",
+          "MetadataDimensionIsModeled",
+          "Exceptions",
+          "UniqueAttributeNames",
+          "HierarchyKeyTextName",
+          "AttributeHierarchyUniqueFields",
+          "UseEPMVersion",
+          "DimensionKindEPMVersion",
+          "DimensionKindChartOfAccounts",
+          "SetNullCellsUnitType",
+          "IgnoreUnitOfNullValueInAggregation",
+          "CellValueOperand",
+          "ExpandHierarchyBottomUp",
+          "MdsExpression",
+          "NoEmptyFixedUnitOverwrite",
+          "FlatKeyOnHierarchicalDisplay"
+       ]
+    },
+    "Description": "Parent-child exagg idempotence performance optimization",
+    "Name": "QMDS4926",
+    "TestNumber": 9389
+ }
